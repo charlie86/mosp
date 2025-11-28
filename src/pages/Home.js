@@ -6,7 +6,7 @@ export function Home() {
           <img src="/public/ministry_hero.png" alt="The Minister of Silly Plots" style="width: 100%; height: auto; display: block; filter: sepia(0.2);">
         </div>
         
-        <h2 style="font-size: 2.5rem; margin-bottom: var(--spacing-md);">Rigorous Analysis of the Utterly Inconsequential</h2>
+        <h2 style="font-size: 2.5rem; margin-bottom: var(--spacing-md);">Serious Analysis of Ridiculous Subjects</h2>
         
         <p style="max-width: 700px; font-size: 1.2rem; margin-bottom: var(--spacing-lg);">
           Welcome to the Ministry. In an era where Artificial Intelligence promises to solve humanity's greatest challenges, 
