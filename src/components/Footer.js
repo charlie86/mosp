@@ -13,3 +13,5 @@ export function Footer() {
     </footer>
   `;
 }
+
+"I don't want fancy things - or fancy schmancy things. I don't even want fancy schmancy wancy things, or fancy schmancy take a trip to Francey things. What I want is wasting your time and mine"
