@@ -1,9 +1,9 @@
 export function Home() {
-    return `
+  return `
     <div class="container">
       <section class="hero" style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: var(--spacing-xl);">
         <div style="border: 8px double var(--color-primary); padding: 10px; background: white; box-shadow: 5px 5px 15px rgba(0,0,0,0.1); max-width: 600px; margin-bottom: var(--spacing-lg);">
-          <img src="/ministry_hero.png" alt="The Minister of Silly Plots" style="width: 100%; height: auto; display: block; filter: sepia(0.2);">
+          <img src="/public/ministry_hero.png" alt="The Minister of Silly Plots" style="width: 100%; height: auto; display: block; filter: sepia(0.2);">
         </div>
         
         <h2 style="font-size: 2.5rem; margin-bottom: var(--spacing-md);">Rigorous Analysis of the Utterly Inconsequential</h2>
