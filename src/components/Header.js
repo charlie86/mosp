@@ -1,6 +1,6 @@
 export function Header() {
   return `
-    <header style="border-bottom: 2px solid var(--color-primary); padding: var(--spacing-md) 0; margin-bottom: var(--spacing-md);">
+    <header class="site-header">
       <div class="container" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--spacing-md);">
         <div class="logo">
           <a href="/" style="text-decoration: none;">
