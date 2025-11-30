@@ -1,8 +1,8 @@
 export function Home() {
   return `
     <div class="container">
-      <section class="hero" style="text-align: center; padding: var(--spacing-xl) 0; margin-bottom: var(--spacing-xl);">
-        <div style="border: 8px double var(--color-primary); padding: 10px; background: white; box-shadow: 5px 5px 15px rgba(0,0,0,0.1); max-width: 600px; margin: 0 auto var(--spacing-lg);">
+      <section class="hero-section">
+        <div class="hero-image-container">
           <img src="/public/ministry_hero.png" alt="The Minister of Silly Plots" style="width: 100%; height: auto; display: block; filter: sepia(0.2);">
         </div>
         <h2 style="font-size: clamp(2rem, 5vw, 3rem); margin-bottom: var(--spacing-md); color: var(--color-primary);">Serious Analysis of Ridiculous Subjects</h2>

@@ -164,8 +164,34 @@ a:hover {
   margin-bottom: var(--spacing-md);
 }
 
+.post-article {
+  padding: var(--spacing-md);
+}
+}
+
+/* Hero Styles */
+.hero-section {
+  text-align: center;
+  padding: var(--spacing-xl) 0;
+  margin-bottom: var(--spacing-xl);
+}
+
+.hero-image-container {
+  border: 8px double var(--color-primary);
+  padding: 10px;
+  background: white;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 0 auto var(--spacing-lg);
+}
+
 @media (max-width: 768px) {
-  .post-article {
-    padding: var(--spacing-md);
+  .hero-section {
+    padding: var(--spacing-md) 0;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .hero-image-container {
+    margin-bottom: var(--spacing-sm);
   }
 }
