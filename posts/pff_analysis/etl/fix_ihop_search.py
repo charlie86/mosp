@@ -1,0 +1,110 @@
+import json
+
+notebook_path = '../notebooks/nfl_ihop_analysis.ipynb'
+
+with open(notebook_path, 'r') as f:
+    nb = json.load(f)
+
+# The helper functions are in the 5th cell (index 4)
+# Let's verify the cell content first to be sure
+helper_cell = nb['cells'][4]
+
+new_helper_code = [
+    "# --- HELPER FUNCTIONS ---\n",
+    "\n",
+    "def haversine_distance(lat1, lon1, lat2, lon2):\n",
+    "    \"\"\"\n",
+    "    Calculate the great circle distance in miles between two points \n",
+    "    on the earth (specified in decimal degrees)\n",
+    "    \"\"\"\n",
+    "    # Convert decimal degrees to radians \n",
+    "    lon1, lat1, lon2, lat2 = map(math.radians, [lon1, lat1, lon2, lat2])\n",
+    "\n",
+    "    # Haversine formula \n",
+    "    dlon = lon2 - lon1 \n",
+    "    dlat = lat2 - lat1 \n",
+    "    a = math.sin(dlat/2)**2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon/2)**2\n",
+    "    c = 2 * math.asin(math.sqrt(a)) \n",
+    "    r = 3956 # Radius of earth in miles. Use 6371 for kilometers\n",
+    "    return c * r\n",
+    "\n",
+    "def find_closest_ihop(gmaps_client, lat, lng):\n",
+    "    \"\"\"\n",
+    "    Finds the closest IHOP using Google Places API.\n",
+    "    Filters results to ensure 'IHOP' is in the name.\n",
+    "    \"\"\"\n",
+    "    try:\n",
+    "        # Search for 'IHOP' ranked by distance\n",
+    "        places_result = gmaps_client.places_nearby(\n",
+    "            location=(lat, lng),\n",
+    "            keyword='IHOP',\n",
+    "            rank_by='distance',\n",
+    "            type='restaurant'\n",
+    "        )\n",
+    "        \n",
+    "        if places_result.get('results'):\n",
+    "            # Iterate through results to find one that is actually an IHOP\n",
+    "            for place in places_result['results']:\n",
+    "                name = place.get('name', '')\n",
+    "                if 'IHOP' in name.upper():\n",
+    "                    address = place.get('vicinity')\n",
+    "                    loc = place['geometry']['location']\n",
+    "                    ihop_lat = loc['lat']\n",
+    "                    ihop_lng = loc['lng']\n",
+    "                    \n",
+    "                    return {\n",
+    "                        'IHOP Name': name,\n",
+    "                        'IHOP Address': address,\n",
+    "                        'IHOP Lat': ihop_lat,\n",
+    "                        'IHOP Lng': ihop_lng\n",
+    "                    }\n",
+    "            \n",
+    "            print(f\"  ⚠️ Found results but none contained 'IHOP' in name. Top result: {places_result['results'][0].get('name')}\")\n",
+    "            return None\n",
+    "        else:\n",
+    "            return None\n",
+    "    except Exception as e:\n",
+    "        print(f\"Error finding IHOP: {e}\")\n",
+    "        return None\n",
+    "\n",
+    "def get_driving_distance(gmaps_client, origin_lat, origin_lng, dest_lat, dest_lng):\n",
+    "    \"\"\"\n",
+    "    Calculates driving distance and duration using Google Maps Distance Matrix API.\n",
+    "    \"\"\"\n",
+    "    try:\n",
+    "        result = gmaps_client.distance_matrix(\n",
+    "            origins=(origin_lat, origin_lng),\n",
+    "            destinations=(dest_lat, dest_lng),\n",
+    "            mode=\"driving\",\n",
+    "            units=\"imperial\"\n",
+    "        )\n",
+    "        \n",
+    "        if result['status'] == 'OK':\n",
+    "            element = result['rows'][0]['elements'][0]\n",
+    "            if element['status'] == 'OK':\n",
+    "                distance_text = element['distance']['text']\n",
+    "                distance_val = element['distance']['value'] # meters\n",
+    "                duration_text = element['duration']['text']\n",
+    "                duration_val = element['duration']['value'] # seconds\n",
+    "                \n",
+    "                # Convert meters to miles\n",
+    "                distance_miles = distance_val * 0.000621371\n",
+    "                \n",
+    "                return {\n",
+    "                    'text_dist': distance_text,\n",
+    "                    'val_dist': distance_miles,\n",
+    "                    'text_dur': duration_text,\n",
+    "                    'val_dur': duration_val\n",
+    "                }\n",
+    "        return None\n",
+    "    except Exception as e:\n",
+    "        print(f\"Error calculating driving distance: {e}\")\n",
+    "        return None"
+]
+
+helper_cell['source'] = new_helper_code
+
+with open(notebook_path, 'w') as f:
+    json.dump(nb, f, indent=4)
+
+print("Notebook updated: Added IHOP name filtering logic.")
