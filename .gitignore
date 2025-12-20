@@ -23,4 +23,4 @@ dist-ssr
 *.sln
 *.sw?
 shhhh/
-posts/pff_analysis/data/*
+posts/pff_analysis/

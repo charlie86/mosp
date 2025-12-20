@@ -33,35 +33,68 @@ Certain elite linemen show a massive sensitivity to IHOP proximity.
 ## Methodology & Process
 
 ### 1. Data Collection & Storage
-*   **PFF Grades:** Scraped run blocking grades for all Offensive Linemen (2006-2025) using `etl/pff_position_scraper.py`.
-*   **Team Defense:** Scraped Run Defense grades for all teams (2006-2025) using `etl/pff_team_scraper.py`.
-*   **Cloud Storage:** All raw scraped data is uploaded to a secure Google Sheet (`PFF Run Blocking Data`) using `etl/pff_to_sheets.py`. This ensures no proprietary data is stored in the repo.
+All scraped data is stored directly in a secure **Google Sheet** (`PFF Run Blocking Data`). No scraped data is stored locally.
+*   **PFF Grades:** `etl/pff_position_scraper.py` (Scrapes 2006-2025 Player Grades -> Google Sheets)
+*   **Team Defense:** `etl/pff_team_scraper.py` (Scrapes 2006-2025 Team Grades -> Google Sheets)
+*   **Images/Plots:** Uploaded to **Google Cloud Storage** bucket `mosp-pff-analysis`.
+    > **Note:** All future plots and visualizations MUST be stored in this GCS bucket. Do not commit image files to the repository. The `reporting/plots/` directory is gitignored.
 
 ### 2. ETL Pipeline
-1.  **`etl/run_analysis.py`**: Reads **Raw Player Data** from Google Sheets. Merges with Schedule and IHOP Distances.
-2.  **`etl/process_team_stats.py`**: Reads **Raw Team Data** from Google Sheets. Cleans and normalizes Team Defense data.
-3.  **`etl/merge_team_stats.py`**: Merges Team Defense grades into the main dataset.
-4.  **`etl/add_years_in_league.py`**: Calculates `YearsInLeague` based on Draft Year.
+*   **Master Script:** `etl/run_analysis.py`
+*   **Input:** Reads raw data tabs from Google Sheets.
+*   **Processing:** Cleans data, restores historical stadium names, merges IHOP metrics, calculates experience (rookie year + aging curve), and merges team defense stats.
+*   **Output:** Writes the final dataset to the **`Merged Analysis Data`** tab in the Google Sheet.
 
-### 3. Analysis Models
-*   **Global Controlled Regression:** `Grade ~ DrivingTime + IsHome + YearsInLeague + YearsInLeague^2 + OppRunDefGrade`
-    *   Script: `analysis/analyze_global_controlled_regression.py` (Reads **Merged Analysis Data** from Google Sheets)
-*   **Individual Player Regression:** Same model applied to individual players (Min 30 games).
-    *   Script: `analysis/analyze_controlled_regression.py` (Reads **Merged Analysis Data** from Google Sheets)
+### 3. Analysis & Reporting
+*   **Standardized Loading:** All analysis scripts use `analysis/production/utils.py` to fetch the merged data directly from Google Sheets.
+*   **Scripts:** Located in `analysis/production/`.
+    *   `analyze_global_controlled_regression.py`: Global MV Regressions.
+    *   `analyze_controlled_regression.py`: Individual player regressions.
+    *   `generate_global_regression_plot.py`: Visualization.
 
 ## Directory Structure
 
-*   `data/`: CSV data files.
-    *   `pff_ihop_analysis_results_final.csv`: The master dataset.
-    *   `pff_team_defense_grades.csv`: Cleaned team defense stats.
-*   `plots/`: Generated visualizations.
 *   `etl/`: Extract, Transform, Load scripts.
-    *   `pff_position_scraper.py`: Scrapes player grades.
-    *   `pff_team_scraper.py`: Scrapes team defense grades.
-    *   `process_team_stats.py`: Cleans team data.
-    *   `merge_team_stats.py`: Merges datasets.
-*   `analysis/`: Core analysis scripts.
-    *   `analyze_global_controlled_regression.py`: Global model.
-    *   `analyze_controlled_regression.py`: Individual player models.
-    *   `update_top_players.py`: Generates top player reports and plots.
-    *   `plot_experience_curve.py`: Visualizes the aging curve.
+    *   `pff_position_scraper.py`: Scrapes player grades to Sheets.
+    *   `run_analysis.py`: Cleans and merges data within Sheets.
+    *   `tests/`: Unit tests and debug scripts.
+    *   `PFF_SCRAPING_WALKTHROUGH.md`: Detailed scraping guide.
+*   `analysis/`:
+    *   `production/`: **Core analysis scripts.** Robust, peer-reviewed code.
+        *   `utils.py`: Shared data loading logic.
+        *   `analyze_*.py`: Statistical models.
+        *   `generate_*.py`: Plot generation.
+    *   `exploration/`: Experimental scripts and notebooks.
+*   `reporting/`: Artifacts for publication.
+    *   `paper/`: LaTeX source and PDF for the research paper.
+    *   `plots/`: Generated figures and charts.
+    *   `*.html/csv`: Regression reports and tables.
+
+## How to Run
+
+### 1. Install Dependencies
+```bash
+pip install -r requirements.txt
+playwright install
+```
+
+### 2. Scrape Data
+```bash
+# Scrape positions (Handles auth, resumes dynamically, saves to Sheets)
+python3 etl/pff_position_scraper.py
+```
+
+### 3. Run ETL (Merge & Clean)
+```bash
+# Merges raw scraping + schedule + IHOP data -> 'Merged Analysis Data' tab
+python3 etl/run_analysis.py
+```
+
+### 4. Run Analysis
+```bash
+# Run global regression
+python3 analysis/production/analyze_global_controlled_regression.py
+
+# Generate plots
+python3 analysis/production/generate_global_regression_plot.py
+```

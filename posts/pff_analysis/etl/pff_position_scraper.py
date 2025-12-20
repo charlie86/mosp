@@ -2,20 +2,33 @@ import asyncio
 import os
 import pandas as pd
 from playwright.async_api import async_playwright, TimeoutError
+from google.cloud import bigquery
+from oauth2client.service_account import ServiceAccountCredentials
 
 # --- Configuration ---
-# Resume from 2019 Week 8
-START_SEASON = 2019
-START_WEEK = 8
+START_SEASON = 2006
 END_SEASON = 2025
-
-POSITIONS = "G,T,C"
+START_WEEK = 1
 
 # Paths
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, "../../../"))
 AUTH_FILE = os.path.join(PROJECT_ROOT, "shhhh/pff_auth.json")
-OUTPUT_FILE = os.path.join(SCRIPT_DIR, '../data/pff_run_blocking_data_2006_2025_positions.csv')
+
+# BigQuery Config
+SERVICE_ACCOUNT_FILE = os.path.join(PROJECT_ROOT, 'shhhh/service_account.json')
+DATASET_ID = 'pff_analysis'
+TABLE_ID = 'position_stats'
+
+def get_bq_client():
+    if not os.path.exists(SERVICE_ACCOUNT_FILE):
+        print(f"Error: {SERVICE_ACCOUNT_FILE} not found.")
+        return None
+    try:
+        return bigquery.Client.from_service_account_json(SERVICE_ACCOUNT_FILE)
+    except Exception as e:
+        print(f"BQ Auth failed: {e}")
+        return None
 
 async def login_and_save_state(page):
     """Handles the login process and saves the storage state."""
@@ -36,7 +49,7 @@ async def login_and_save_state(page):
     return True
 
 async def scrape_week(page, season, week):
-    url = f"https://premium.pff.com/nfl/positions/{season}/SINGLE/offense-blocking?position={POSITIONS}&week={week}"
+    url = f"https://premium.pff.com/nfl/positions/{season}/SINGLE/offense-blocking?week={week}"
     print(f"Scraping {season} Week {week}: {url}")
     
     # Retry logic for navigation
@@ -146,6 +159,33 @@ async def scrape_week(page, season, week):
 
 async def main():
     async with async_playwright() as p:
+        # BigQuery Setup
+        print("Setting up BigQuery connection...")
+        bq_client = get_bq_client()
+        if not bq_client:
+            return
+
+        existing_weeks = set()
+        table_ref = f"{bq_client.project}.{DATASET_ID}.{TABLE_ID}"
+        
+        try:
+            print(f"Checking existing data in {table_ref}...")
+            query = f"SELECT Season, Week FROM `{table_ref}` GROUP BY 1, 2"
+            query_job = bq_client.query(query)
+            try:
+                results = query_job.result()
+                for row in results:
+                    existing_weeks.add((row.Season, row.Week))
+                print(f"  Identified {len(existing_weeks)} unique Season/Week combos already scraped.")
+            except Exception as e:
+                # Table might not exist yet if only just setup, or empty
+                print(f"  Error querying (table might be empty/missing): {e}")
+
+        except Exception as e:
+            print(f"  BQ setup check failed: {e}")
+            # Do not return, might just be empty table. Continue.
+
+        # Browser Setup
         browser = await p.chromium.launch(headless=False)
         
         context = None
@@ -165,41 +205,58 @@ async def main():
              if not await login_and_save_state(page):
                 await browser.close()
                 return
-        
-        # We are appending, so don't delete file.
-        # Ensure directory exists
-        os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
-        
-        # Determine if we need to write headers (if file doesn't exist)
-        first_write = not os.path.exists(OUTPUT_FILE)
-        
+
         # Generate list of (Season, Week) tuples to scrape
         tasks = []
-        
-        # 2019 (Partial)
-        weeks_2019 = list(range(START_WEEK, 19)) + [28, 29, 30, 32]
-        for w in weeks_2019:
-            tasks.append((2019, w))
-            
-        # 2020-2025 (Full)
         full_weeks = list(range(1, 19)) + [28, 29, 30, 32]
-        for s in range(2020, END_SEASON + 1):
+        
+        for s in range(START_SEASON, END_SEASON + 1):
             for w in full_weeks:
-                tasks.append((s, w))
+                # Filter if we already have it!
+                if (s, w) not in existing_weeks:
+                    tasks.append((s, w))
                 
-        print(f"Resuming scrape. Total tasks: {len(tasks)}")
+        print(f"Starting scrape. Weeks remaining: {len(tasks)}")
         
         for season, week in tasks:
             data = await scrape_week(page, season, week)
             if data:
-                df = pd.DataFrame(data)
-                df.to_csv(OUTPUT_FILE, mode='a', header=first_write, index=False)
-                first_write = False # Headers written (or file existed)
-                print(f"  -> Saved {len(data)} records for {season} Week {week}")
+                # Prepare for BQ Streaming
+                # Ensure types are correct, BQ streaming is picky about types relative to JSON
+                rows_to_insert = []
+                for row in data:
+                    # Basic cleaning
+                    cleaned_row = row.copy()
+                    # Integers
+                    for col in ['Season', 'Week', 'SnapCount_Block', 'SnapCount_RunBlock', 'SnapCount_PassBlock']:
+                        try:
+                            cleaned_row[col] = int(cleaned_row[col])
+                        except:
+                            cleaned_row[col] = 0
+                            
+                    # Floats
+                    for col in ['Grade_Offense', 'Grade_RunBlock', 'Grade_PassBlock']:
+                        try:
+                            cleaned_row[col] = float(cleaned_row[col])
+                        except:
+                            cleaned_row[col] = 0.0
+                            
+                    rows_to_insert.append(cleaned_row)
+                
+                # Write to BigQuery
+                try:
+                    errors = bq_client.insert_rows_json(table_ref, rows_to_insert)
+                    if errors == []:
+                        print(f"  -> Saved {len(data)} records for {season} Week {week}")
+                    else:
+                        print(f"  -> Errors inserting rows: {errors}")
+                except Exception as e:
+                     print(f"  -> Error inserting to BQ: {e}")
+
             else:
                 print(f"  -> No data for {season} Week {week}")
             
-        print(f"Done! Data saved to {OUTPUT_FILE}")
+        print(f"Done! Scrape complete.")
         await browser.close()
 
 if __name__ == "__main__":
