@@ -1,0 +1,204 @@
+\documentclass{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{subcaption}
+
+% Page Geometry
+\geometry{a4paper, margin=1in}
+
+% Title Information
+\title{Home Brew Advantage: The Gravitational Influence of Regional Coffee Chains on Super Bowl LX}
+\author{Charlie Thompson \\ \textit{Prime Minister, Ministry of Silly Plots}}
+\date{January 28, 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This study investigates the correlation between the density of specific coffee chains (Starbucks vs. Dunkin') surrounding NFL stadiums and the on-field performance of the New England Patriots and Seattle Seahawks. By implementing specific experimental controls—most notably isolating \textbf{Away Games} to eliminate Home Field Advantage bias—we identify a striking and robust performance separation that aligns with the ``Home Brew Advantage'' hypothesis. The findings demonstrate that the Patriots' offensive efficiency is inextricably linked to Dunkin' ``Gravity,'' while the Seahawks' defensive dominance is maximized in high-Starbucks ``gravitational'' zones.
+\end{abstract}
+
+\section{Introduction}
+
+For decades, pundits have analyzed conventional factors such as weather, turf type, and crowd noise. This paper proposes a novel environmental variable: the ``Regional Coffee Chain Gravitational Pull.'' We hypothesize that the regional dominance of major coffee chains exerts a measurable influence on team performance, specifically for teams with strong cultural associations to those brands.
+
+We propose the following hypotheses:
+\begin{itemize}
+    \item \textbf{H1 (Patriots):} The Pats Run on Dunkin'.The New England Patriots offense performs significantly better in environments with high \textbf{Dunkin' Gravity} ($G_{net} > 0$).
+    \item \textbf{H2 (Seahawks):} The Legion of Brew. The Seattle Seahawks defense performs significantly better in environments with high \textbf{Starbucks Gravity} ($G_{net} < 0$).
+    \item \textbf{H3 (Null Hypothesis):} These performance deltas are solely artifacts of Home Field Advantage.
+\end{itemize}
+
+\section{Methodology}
+
+\subsection{The Coffee Gravity Model}
+
+To quantify the ``coffee environment'' of each stadium, we employed an \textbf{Interference-Adjusted Exponential Decay Model}. Conventional density metrics fail to account for proximity; a coffee shop adjacent to the stadium should carry more weight than one ten miles away.
+
+The gravitational pull $G_{chain}$ for a given chain is calculated as:
+
+\begin{equation}
+    G_{chain} = \sum_{i=0}^{n} M_i \cdot e^{-0.5 \cdot d_i}
+\end{equation}
+
+Where:
+\begin{itemize}
+    \item $d_i$ is the Haversine distance (in miles) from the stadium to location $i$, defined as:
+    \begin{equation}
+        d = 2r \arcsin\left(\sqrt{\sin^2\left(\frac{\phi_2 - \phi_1}{2}\right) + \cos(\phi_1) \cos(\phi_2) \sin^2\left(\frac{\lambda_2 - \lambda_1}{2}\right)}\right)
+    \end{equation}
+    where $\phi$ represents latitude, $\lambda$ represents longitude, and $r$ is the radius of the Earth (approx. 3959 miles).
+    \item $M_i$ is the ``Mass'' of location $i$, initialized at 1.0.
+\end{itemize}
+
+\subsubsection{Interference Term}
+To account for market saturation and competition, we introduced an interference term. The mass $M_i$ is reduced if a competitor's location is within an \textbf{Interference Radius} ($r = 0.5$ miles). As direct competitors with a distinct regional split, we treat Starbucks and Dunkin' as mutually exclusive and assume that the presence of one negates the gravitational pull of the other.
+
+\begin{equation}
+    M_i' = M_i - \left(1.0 - \frac{d_{competitor}}{0.5}\right)
+\end{equation}
+
+The Net Gravity ($G_{net}$) is defined as the difference between the two forces:
+
+\begin{equation}
+    G_{net} = G_{dunkin} - G_{starbucks}
+\end{equation}
+
+Positive values indicate a Dunkin'-dominant environment, while negative values indicate a Starbucks-dominant environment.
+
+\subsection{Experimental Controls}
+
+Home field advantage is a clear confounding variable in this analysis, since teams play better at home in general and the two teams in question have particular strong gravitational fields for their respective coffee chains. To address this, we applied a strict \textbf{Away Games Only} filter. This control separates the environmental variable (Coffee Gravity) from the confounding variable (Home Field Advantage).
+
+\subsection{Data Sources}
+
+The analysis utilizes data from the 2025 NFL Season (Regular Season + Playoffs). Game data was sourced from \texttt{nflverse} Play-by-Play data via BigQuery, filtered for \texttt{season\_type IN ('REG', 'POST')}. Location data consists of geocoded coordinates of all US Starbucks and Dunkin' locations.
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{screenshots/New_England_Patriots_Gillette_Stadium.png}
+        \caption{Gillette Stadium (High Dunkin' Density)}
+        \label{fig:gillette}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{screenshots/Seattle_Seahawks_Lumen_Field.png}
+        \caption{Lumen Field (High Starbucks Density)}
+        \label{fig:lumen}
+    \end{subfigure}
+    \caption{Visualizing the Coffee Gravity Field: Clean screenshots of stadium environments used for density calculation.}
+    \label{fig:stadiums}
+\end{figure}
+
+\section{Results}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{coffee_gravity_ranking_publication.jpeg}
+    \caption{The Home Brew Advantage: Net Coffee Gravity for all NFL teams. Stadiums below the dashed line have higher Dunkin' gravity; stadiums above the dashed line have higher Starbucks gravity.}
+    \label{fig:ranking}
+\end{figure}
+
+\subsection{The Patriots ``Run on Dunkin'' (Confirmed)}
+
+Analyzing \textbf{Away Games Only}, the Patriots offense shows a drastic drop in production when entering ``Starbucks Gravitational Zones'' ($G_{net} < 0$). This is primarily driven by a collapse in the rushing attack.
+
+\begin{table}[H]
+    \centering
+    \caption{Patriots Offensive Metrics (Away Games Only)}
+    \begin{tabular}{lccl}
+        \toprule
+        \textbf{Metric} & \textbf{Dunkin Zone} & \textbf{Starbucks Zone} & \textbf{Delta} \\
+         & ($G_{net} > 0$) & ($G_{net} < 0$) & \\
+        \midrule
+        Points Per Game & 31.3 & 24.0 & \textbf{-7.3} \\
+        Total Yds / Game & 409.7 & 338.5 & \textbf{-71.2} \\
+        Rush EPA / Play & +0.053 & -0.186 & -0.239 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\textbf{Conclusion:} H1 is \textbf{Empirically Validated}. The data reveals a binary mode of performance: in Dunkin' zones, the offense operates at an elite efficiency; in Starbucks zones, production collapses across all key vectors.
+
+\subsection{The Seahawks ``Legion of Brew'' (Confirmed)}
+
+Conversely, the Seahawks defense exhibits elite performance metrics in ``Starbucks Gravitational Zones.''
+
+\begin{table}[H]
+    \centering
+    \caption{Seahawks Defensive Metrics (Away Games Only)}
+    \begin{tabular}{lccl}
+        \toprule
+        \textbf{Metric} & \textbf{Dunkin Zone} & \textbf{Starbucks Zone} & \textbf{Delta} \\
+         & ($G_{net} > 0$) & ($G_{net} < 0$) & \\
+        \midrule
+        Total Turnovers & 4 & 9 & +5 \\
+        Turnovers / Game & 1.00 & \textbf{1.80} & \textbf{+0.80} \\
+        PPG Allowed & 14.8 & 14.2 & -0.6 \\
+        Opp. Passer Rtg & 70.3 & \textbf{61.6} & \textbf{-8.7} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\textbf{Conclusion:} H2 is \textbf{Strongly Supported}. The Starbucks atmosphere correlates with a massive +80\% increase in forced turnovers (1.8 vs 1.0 per game), providing strong evidence for the environmental influence of the coffee ecosystem.
+
+\subsection{Outlier Discovery: The Sam Darnold Paradox}
+
+An unexpected finding emerged regarding Seahawks QB Sam Darnold. Unlike his team's defense, Darnold exhibits a strong \textbf{negative correlation} with Starbucks Gravity. While more research is needed to determine the cause of this phenomenon, one hypothesis is that Darnold is still seeing ghosts from his time on the East Coast with the Jets and still has an innate affinity for Dunkin'.
+
+\begin{table}[H]
+    \centering
+    \caption{Sam Darnold Performance Splits}
+    \begin{tabular}{lccc}
+        \toprule
+        \textbf{Metric} & \textbf{Dunkin Zone} & \textbf{Starbucks Zone} & \textbf{Delta} \\
+        \midrule
+        Passer Rating & \textbf{124.4} & 75.4 & \textbf{-49.0} \\
+        TD / INT Ratio & \textbf{5.50} & 0.57 & \textbf{-4.93} \\
+        Points Per Game & \textbf{31.2} & 22.6 & \textbf{-8.6} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\textbf{Interpretation:} This finding is \textbf{Anomalous yet Distinct}. While the Seahawks \emph{Defense} thrives in Starbucks zones, their Quarterback appears to suffer an allergic reaction to the same environment (75.4 Rating vs 124.4 in Dunkin' zones). This suggests a fundamental biochemical incompatibility between Darnold and the Starbucks ecosystem.
+
+\section{Discussion: Super Bowl LX Preview}
+
+Super Bowl LX will be held at \textbf{Levi's Stadium} in Santa Clara, CA. Our model calculates the Net Gravity of this location to be \textbf{-5.80}, the second most Starbucks-dominant stadium in the league, behind only the Seahawks' own Lumen Field. It also has higher Starbucks Gravity than the Patriots' home stadium, Gillette Stadium has Dunkin' gravity. Assuming equal Dunkin' and Starbucks gravitational effects for both teams, the Patriots are at a significant disadvantage.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{screenshots/San_Francisco_49ers_Levi's_Stadium.png}
+    \caption{Levi's Stadium: A Starbucks stronghold ($G_{net} = -5.80$).}
+    \label{fig:levis}
+\end{figure}
+
+Based on the robust ``Away Games Only'' model, we project the following outcomes:
+\begin{enumerate}
+    \item \textbf{Patriots Offense:} Predicted to underperform ($\approx$ 24 PPG, -0.186 rushing EPA/play).
+    \item \textbf{Seahawks Defense:} Predicted to dominate ($\approx$ 12 PPG allowed, +80\% increase in takeaways).
+    \item \textbf{Variable:} Sam Darnold is predicted to struggle significantly (75.4 Passer Rating), though the Seahawks defense is likely to slow down Drake Maye even more, holding opposing QBs to a 61.6 passer rating in Starbucks zones.
+\end{enumerate}
+
+\textbf{Prediction:} The environmental factors heavily favor a \textbf{Seahawks Defensive Victory}, provided their run game can compensate for the predicted Quarterback inefficiency.
+
+\section*{Code Artifacts \& Reproducibility}
+
+All findings in this paper are reproducible using the provided codebase:
+\begin{itemize}
+    \item \texttt{robust\_coffee\_check.py}: End-to-end extraction and gravity calculation.
+    \item \texttt{reproduce\_robust\_metrics.sql}: Standalone SQL for replication.
+\end{itemize}
+
+\end{document}
