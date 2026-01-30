@@ -56,7 +56,7 @@ export const posts = [
   },
   {
     id: 2,
-    title: "The Home Brew Advantage: How Coffee Coordinates Control the NFL",
+    title: "Home Brew Advantage: A Gravitational Analysis of Regional Coffee Chains and Their Impact on Super Bowl LX",
     date: "Jan 30, 2026",
     summary: "Do teams perform better when they are close to their preferred coffee chain? A Super Bowl LX investigation.",
     content: superBowlContent
