@@ -4,7 +4,11 @@
 
 I’ve always suspected that New England’s dominance wasn't just about Brady or Belichick. It was about something deeper. Something roasted. Something glazed.
 
-As a Patriots fan, I know the spiritual power of a rush-hour Dunkin’ run. And as a data scientist, I know that geography is destiny. So, with Super Bowl LX approaching—a matchup between the **New England Patriots** (the spiritual home of Dunkin') and the **Seattle Seahawks** (the literal home of Starbucks)—I decided to stop guessing and start calculating.
+I am not a Patriots fan. In fact, like most of America, I find their two decades of dominance to be statistically improbable and emotionally exhausting. But I respect data. And as a data scientist, I know that in New England, Dunkin' Donuts isn't just coffee. It is a [civil religion](https://www.youtube.com/watch?v=FSvNhxKJJyU).
+
+Start the day with a large regular. End the day with a large regular. It is the fuel of champions, and apparently, the fuel of Casey Affleck.
+
+So, with Super Bowl LX approaching—a matchup between the **New England Patriots** (the spiritual home of Dunkin') and the **Seattle Seahawks** (the literal home of Starbucks)—I decided to see if this cultural obsession actually translates to the field.
 
 I built a geospatial gravity model to answer a simple question: **Do these teams actually perform better when they are physically closer to their preferred coffee chain?**
 
