@@ -18,6 +18,10 @@ export function Home() {
         <h3 style="border-bottom: 2px solid var(--color-accent); display: inline-block; margin-bottom: var(--spacing-md);">Recent Publications</h3>
         <!-- Post list will go here -->
         <div style="background: white; border: 1px solid var(--color-border); padding: var(--spacing-md); margin-bottom: var(--spacing-md);">
+          <h4><a href="/post/2">The Home Brew Advantage: How Coffee Coordinates Control the NFL</a></h4>
+          <p style="font-size: 0.9rem; color: #666; margin-top: 5px;">Published: Jan 30, 2026 | Department of Stuperlatives</p>
+        </div>
+        <div style="background: white; border: 1px solid var(--color-border); padding: var(--spacing-md); margin-bottom: var(--spacing-md);">
           <h4><a href="/post/1">Do NFL offensive linemen pancake their opponents more often when the stadium is closer to an IHOP?</a></h4>
           <p style="font-size: 0.9rem; color: #666; margin-top: 5px;">Published: Nov 24, 2025 | Correlation: 0.0001 (Significant? No.)</p>
         </div>

@@ -1,0 +1,6 @@
+nfl_data_py
+pandas
+google-cloud-storage
+google-cloud-bigquery
+pandas-gbq
+tabulate

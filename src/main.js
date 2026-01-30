@@ -55,9 +55,18 @@ document.addEventListener('DOMContentLoaded', () => {
       navigateTo(e.target.href);
     }
     // Also handle standard anchor tags for internal links
-    if (e.target.tagName === 'A' && e.target.getAttribute('href').startsWith('/')) {
+    // BUT ignore links to static files (html, pdf, etc) or assets
+    // Also handle standard anchor tags for internal links
+    // BUT ignore links to static files (html, pdf, etc) or assets
+    const anchor = e.target.closest('a');
+    if (anchor && anchor.getAttribute('href') && anchor.getAttribute('href').startsWith('/')) {
+      const href = anchor.getAttribute('href');
+      // If it looks like a file extension or explicitly points to assets/posts, let the browser handle it
+      if (href.match(/\.(html|pdf|png|jpg|jpeg|gif|svg)$/) || href.includes('/assets/')) {
+        return;
+      }
       e.preventDefault();
-      navigateTo(e.target.getAttribute('href'));
+      navigateTo(href);
     }
   });
 

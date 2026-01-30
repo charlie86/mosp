@@ -1,3 +1,15 @@
+import { parse } from 'marked';
+// Import the markdown file as a raw string
+import superBowlMd from '../../posts/super_bowl/index.md?raw';
+
+// Basic path correction for assets in the markdown (optional but good practice)
+// Since the markdown lives at posts/super_bowl/index.md, assets are relative to that.
+// But valid URLs on the site are relative to root if served statically or handled by vite.
+// We'll replace "assets/" with "/posts/super_bowl/assets/" to be safe.
+// Also remove the first H1 title from the markdown source because the Post component renders it
+const mdWithoutTitle = superBowlMd.replace(/^# .*$/m, '');
+const superBowlContent = parse(mdWithoutTitle.replace(/assets\//g, '/posts/super_bowl/assets/'));
+
 export const posts = [
   {
     id: 1,
@@ -41,5 +53,12 @@ export const posts = [
       <p>While correlation does not imply causation, the p-values here are hard to ignore. For a specific breed of elite NFL lineman, the "Pancake Zone" is real. It represents a psychological safety net—a knowledge that, should the game go south, a Rooty Tooty Fresh 'N Fruity is theoretically just a halftime drive away.</p>
       <p>Teams drafting offensive linemen should strongly consider relocating their stadiums to strip malls adjacent to major highways. The data demands it.</p>
     `
+  },
+  {
+    id: 2,
+    title: "The Home Brew Advantage: How Coffee Coordinates Control the NFL",
+    date: "Jan 30, 2026",
+    summary: "Do teams perform better when they are close to their preferred coffee chain? A Super Bowl LX investigation.",
+    content: superBowlContent
   }
 ];
