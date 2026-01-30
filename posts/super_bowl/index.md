@@ -26,22 +26,24 @@ To test this, I couldn't just count the number of stores nearby. A Starbucks acr
 
 I employed an **Interference-Adjusted Exponential Decay Model**. It sounds complicated, but it’s just a fancy way of saying: "Coffee shops are like planets, and stadiums are like spaceships."
 
-The gravitational pull $G$ for a given chain is calculated as:
+The gravitational pull "G" for a given chain is calculated as:
 
-$$ G_{chain} = \sum_{i=0}^{n} M_i \cdot e^{-0.5 \cdot d_i} $$
+```math
+G_chain = Sum( Mass_i * e^(-0.5 * distance_i) )
+```
 
 Basically, I calculated the distance from every stadium to every Starbucks and Dunkin' in America. I also added an **Interference Term**: if a Dunkin' and a Starbucks are right next to each other, they cancel each other out. We’re looking for *pure* signal here.
 
 The result is a **Net Gravity Score** for every stadium. Positive values mean you're in Dunkin' Country. Negative values mean you're in Starbucks Territory.
 
-<div class="row">
-  <div class="col-md-6">
-    <img src="assets/screenshots/New_England_Patriots_Gillette_Stadium.png" alt="Gillette Stadium" style="width: 100%; border-radius: 8px; margin-bottom: 10px;">
-    <p style="text-align: center; font-size: 0.9em; color: #666;"><em>Gillette Stadium: A Dunkin' Fortress.</em></p>
+<div style="display: flex; gap: 20px; margin: 20px 0;">
+  <div style="flex: 1; text-align: center;">
+    <img src="assets/screenshots/New_England_Patriots_Gillette_Stadium.png" alt="Gillette Stadium" style="width: 100%; border-radius: 8px; margin-bottom: 5px;">
+    <p style="font-size: 0.85em; color: #666; margin-top: 5px;"><em>Gillette Stadium: A Dunkin' Fortress.</em></p>
   </div>
-  <div class="col-md-6">
-    <img src="assets/screenshots/Seattle_Seahawks_Lumen_Field.png" alt="Lumen Field" style="width: 100%; border-radius: 8px; margin-bottom: 10px;">
-    <p style="text-align: center; font-size: 0.9em; color: #666;"><em>Lumen Field: The Heart of the Empire.</em></p>
+  <div style="flex: 1; text-align: center;">
+    <img src="assets/screenshots/Seattle_Seahawks_Lumen_Field.png" alt="Lumen Field" style="width: 100%; border-radius: 8px; margin-bottom: 5px;">
+    <p style="font-size: 0.85em; color: #666; margin-top: 5px;"><em>Lumen Field: The Heart of the Empire.</em></p>
   </div>
 </div>
 
