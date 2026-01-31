@@ -553,8 +553,12 @@ def generate_all_maps():
             // Find the map and center on MetLife, then open popup
             var map = Object.values(window).find(v => v instanceof L.Map);
             if (map) {
-                // Force center on MetLife Stadium
-                map.setView([40.8135, -74.0745], 11);
+                // Determine zoom level based on screen width
+                var isMobile = window.innerWidth < 768;
+                var zoomLevel = isMobile ? 10 : 11;
+
+                // Force center on MetLife Stadium with appropriate zoom
+                map.setView([40.8135, -74.0745], zoomLevel);
                 
                 // Close all popups first
                 map.closePopup();
