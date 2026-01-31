@@ -550,10 +550,13 @@ def generate_all_maps():
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         setTimeout(function() {
-            // Find the map and open MetLife popup
+            // Find the map and center on MetLife, then open popup
             var map = Object.values(window).find(v => v instanceof L.Map);
             if (map) {
-                // First close all popups
+                // Force center on MetLife Stadium
+                map.setView([40.8135, -74.0745], 11);
+                
+                // Close all popups first
                 map.closePopup();
                 
                 map.eachLayer(function(layer) {
