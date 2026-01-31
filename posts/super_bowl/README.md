@@ -29,7 +29,10 @@ posts/super_bowl/
 ├── requirements.txt          # Python dependencies
 │
 ├── etl/                      # Data extraction & loading
-│   └── coffee_data_cache.json   # Pre-computed coffee location data
+│   ├── scrape_coffee_locations.py  # Scrapes Starbucks/Dunkin' via Google Maps API
+│   ├── load_data.py              # Loads PBP data to BigQuery via nflverse
+│   ├── bq_utils.py               # BigQuery utility functions
+│   └── coffee_data_cache.json    # Pre-computed coffee location data
 │
 ├── analysis/                 # Core analysis
 │   ├── robust_coffee_check.py   # Main analysis script
@@ -43,6 +46,25 @@ posts/super_bowl/
 ├── screenshots/              # Stadium screenshots for report
 └── docs/                     # LaTeX report & documentation
 ```
+
+## ETL Pipeline
+
+### 1. Scrape Coffee Locations (Optional - uses cached data)
+
+```bash
+# Requires Google Maps API key
+python etl/scrape_coffee_locations.py
+```
+
+This scrapes all Starbucks and Dunkin' locations within 10 miles of each NFL stadium and saves to `etl/coffee_data_cache.json`.
+
+### 2. Load PBP Data to BigQuery (Optional)
+
+```bash
+python etl/load_data.py
+```
+
+Loads nflverse play-by-play data (1999-2025) to BigQuery for analysis.
 
 ## Methodology
 
