@@ -1,10 +1,51 @@
-// Vite supports ?raw imports natively for loading files as strings
-import superBowlMd from '../../posts/super_bowl/index.md?raw';
-import { parse } from 'marked';
+// Use CDN import for static serving without bundler
+import { parse } from 'https://esm.sh/marked';
 
-// Remove the first H1 title from the markdown source because the Post component renders it
+// Inline content because ?raw import requires a bundler
+const superBowlMd = `# Home Brew Advantage: The Gravitational Influence of Regional Coffee Chains on Super Bowl LX
+
+> **Ministry of Silly Plots** | January 28, 2026
+
+<div style="background-color: #f8f9fa; border-left: 4px solid #007bff; padding: 15px; margin-bottom: 25px;">
+  <strong>SUMMARY</strong><br>
+  A new study identifies a "Home Brew Advantage" in the NFL, where the New England Patriots and Seattle Seahawks perform significantly better in environments dominated by their region's preferred coffee chain. The research suggests the Patriots' offense is fueled by Dunkin', while the Seahawks' defense thrives in Starbucks territory.
+</div>
+
+For decades, sports analysts have scrutinized every variable affecting NFL performance—from turf types to wind shear. But a new study from the Ministry of Silly Plots suggests the most potent performance enhancer might be brewing in the parking lot. The research, titled "Home Brew Advantage," identifies a robust correlation between the regional density of coffee chains—specifically Dunkin' and Starbucks—and the performance of the New England Patriots and Seattle Seahawks.
+
+The study introduces a novel **"Coffee Gravity Model"** to quantify the "caffeinated environment" of every NFL stadium. By measuring the proximity and density of thousands of coffee shop locations, the model assigns a "Net Coffee Gravity" score to each venue. The results reveal that NFL stadiums are perfectly split into two distinct camps, determined by their home region's preferred brew.
+
+<div style="text-align: center; margin: 30px 0;">
+  <img src="assets/coffee_gravity_ranking_publication.jpeg" alt="Coffee Gravity Ranking" style="max-width: 500px; width: 100%; border-radius: 8px; border: 1px solid #ddd; display: inline-block;">
+  <p style="font-style: italic; color: #666; margin-top: 10px;">Fig 1. The Home Brew Advantage: Net Coffee Gravity for all NFL teams.</p>
+</div>
+
+<iframe src="assets/coffee_force_field_map_all.html" style="width: 100%; height: 600px; border: none; border-radius: 8px; margin: 20px 0; box-shadow: 0 4px 6px rgba(0,0,0,0.1);"></iframe>
+<div style="text-align: center; margin-bottom: 30px;">
+  <a href="assets/coffee_force_field_map_all.html" target="_blank" style="background-color: #007bff; color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 0.9em;">View Full Screen Interactive Map</a>
+</div>
+
+
+## The Patriots "Run on Dunkin"
+
+The New England Patriots, it appears, literally run on Dunkin'. When isolating for **Away Games** to remove home-field bias, the Patriots' offense suffers a statistically significant decline in production when entering "Starbucks Zones." The data shows a drop of **7.3 points per game** and **71 fewer total yards** compared to games played in Dunkin'-heavy territories. This "Withdrawal Effect" suggests that the Patriots' offensive engine requires a specific specific blend of sugar and cream found only in New England's favorite chain.
+
+## The "Legion of Brew"
+
+Conversely, the Seattle Seahawks defense—the storied "Legion of Boom"—appears to be fueled by the distinct roast of Starbucks. In high-Starbucks gravity environments, the Seahawks' defense is significantly more disruptive, forcing **80% more turnovers per game** (1.80 vs 1.00). The caffeine-rich air of the Pacific Northwest (and similar environments) seems to heighten their reaction times and aggression.
+
+## Super Bowl LX Forecast
+
+The upcoming Super Bowl LX at **Levi's Stadium** in Santa Clara, CA, presents a complex forecast. The stadium is a stronghold of Starbucks dominance with a Net Gravity of **-5.80**, theoretically favoring the Seahawks. However, a peculiar **"Sam Darnold Paradox"** emerged in the data: unlike his defensive teammates, the Seahawks' quarterback exhibits a severe performance drop-off in Starbucks territories, with his passer rating plummeting by nearly 50 points. This biochemical incompatibility suggests that while the Seahawks' defense may feast, their offense could struggle to stay awake.
+
+**Final Prediction:** A defensive slugfest, with the Seahawks prevailing **20-13**, provided their quarterback can overcome his environmental allergies.
+
+<a href="/posts/super_bowl/docs/robust_coffee_metrics.pdf" style="display: block; text-align: center; background-color: #007bff; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px; font-weight: bold; margin: 20px auto; width: fit-content;">Read the Full Technical Paper (PDF)</a>
+`;
+
+// Also remove the first H1 title from the markdown source because the Post component renders it
 const mdWithoutTitle = superBowlMd.replace(/^# .*$/m, '');
-const superBowlContent = parse(mdWithoutTitle.replace(/assets\//g, '/posts/super_bowl/assets/').replace(/docs\//g, '/posts/super_bowl/docs/'));
+const superBowlContent = parse(mdWithoutTitle.replace(/assets\//g, '/posts/super_bowl/assets/'));
 
 export const posts = [
   {
