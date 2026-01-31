@@ -1,16 +1,24 @@
-
 import os
 import shutil
 import pandas as pd
 import numpy as np
 import folium
 import matplotlib.pyplot as plt
-from google.cloud import bigquery
-from google.oauth2 import service_account
+try:
+    from google.cloud import bigquery
+    from google.oauth2 import service_account
+    BQ_AVAILABLE = True
+except ImportError:
+    print("Google Cloud libraries not found. Will use JSON cache.")
+    BQ_AVAILABLE = False
+except Exception as e:
+    print(f"Error importing Google Cloud libraries: {e}")
+    BQ_AVAILABLE = False
+
 from math import radians, cos, sin, asin, sqrt
 
 # --- Configuration ---
-PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../'))
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../../../'))
 BQ_COFFEE_TABLE = "stuperlatives.coffee_wars"
 INTERFERENCE_RADIUS = 0.5
 INTERFERENCE_STRENGTH = 1.0
@@ -18,6 +26,8 @@ GRID_RES = 100 # Lower res per stadium since we have many
 OVERLAY_DIR = "map_overlays"
 
 def get_bq_client():
+    if not BQ_AVAILABLE:
+        return None
     try:
         possible_keys = [
             'shhhh/service_account.json',
@@ -51,13 +61,43 @@ def simple_hav(lo1, la1, lo2, la2):
 
 def generate_all_maps():
     client = get_bq_client()
-    if not client: return
-
-    cols = ['team_name', 'stadium_name', 'dunkin', 'starbucks']
-    query = f"""SELECT {','.join(cols)} FROM `{BQ_COFFEE_TABLE}`"""
-    df = client.query(query).to_dataframe()
     
-    if df.empty: return
+    df = pd.DataFrame()
+    if client:
+        try:
+            cols = ['team_name', 'stadium_name', 'dunkin', 'starbucks']
+            query = f"""SELECT {','.join(cols)} FROM `{BQ_COFFEE_TABLE}`"""
+            df = client.query(query).to_dataframe()
+        except Exception as e:
+            print(f"BQ Query failed: {e}")
+    
+    # If no DF from BQ, try loading from JSON cache
+    if df.empty:
+        # Try local path (same dir as script)
+        json_path = os.path.join(os.path.dirname(__file__), "coffee_data_cache.json")
+        if not os.path.exists(json_path):
+             # Try alternate path just in case
+             json_path = os.path.join(PROJECT_ROOT, "posts/super_bowl/data/prep/coffee_data_cache.json")
+
+        if os.path.exists(json_path):
+            print(f"Loading data from cache: {json_path}")
+            import json
+            with open(json_path, 'r') as f:
+                data = json.load(f)
+            
+            # Convert to DataFrame with expected columns
+            rows = []
+            for entry in data:
+                rows.append({
+                    'team_name': entry['Team'],
+                    'stadium_name': entry['Stadium'],
+                    'dunkin': entry.get('Dunkin_Stats', {}),
+                    'starbucks': entry.get('Starbucks_Stats', {})
+                })
+            df = pd.DataFrame(rows)
+        else:
+            print("No BQ data and no cache found.")
+            return
 
     # Map Full Name to Abbrev
     TEAM_TO_ABBREV = {
@@ -303,6 +343,9 @@ def generate_all_maps():
         rgba = np.flipud(rgba)
         
         # Save Overlay
+        if not os.path.exists(OVERLAY_DIR):
+            os.makedirs(OVERLAY_DIR)
+        
         safe_name = "".join(x for x in team_full if x.isalnum()) + "_" + "".join(x for x in stadium_display_name if x.isalnum())
         img_name = f"{OVERLAY_DIR}/{safe_name}.png"
         plt.imsave(img_name, rgba)
@@ -471,9 +514,49 @@ def generate_all_maps():
                 icon=folium.CustomIcon(logo_url, icon_size=(30, 30))
             ).add_to(m)
 
-    output = "coffee_force_field_map_all.html"
-    m.save(output)
-    print(f"All-Stadium Map saved to {output}")
+    # ADD LEGEND
+    legend_html = '''
+    <div style="position: fixed; 
+         bottom: 30px; right: 30px; width: 280px; height: 210px; 
+         border: 1px solid #ddd; z-index:9999; font-size:13px;
+         background-color: white; opacity: 0.95;
+         border-radius: 8px; padding: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.2); font-family: sans-serif;">
+         <div style="font-weight: bold; margin-bottom: 10px; font-size: 15px; border-bottom: 1px solid #eee; padding-bottom: 5px;">Coffee Gravity Legend</div>
+         
+         <div style="margin-bottom: 6px;">
+            <div style="background:#FF671F; width:8px; height:8px; display: inline-block; vertical-align: middle; margin-right: 8px; border-radius: 50%;"></div>
+            <span style="vertical-align: middle;">Dunkin' Location</span>
+         </div>
+         <div style="margin-bottom: 10px;">
+            <div style="background:#00704A; width:8px; height:8px; display: inline-block; vertical-align: middle; margin-right: 8px; border-radius: 50%;"></div>
+            <span style="vertical-align: middle;">Starbucks Location</span>
+         </div>
+
+         <div style="margin-bottom: 6px;">
+            <div style="background:radial-gradient(circle, rgba(255, 103, 31, 0.9) 0%, rgba(255, 103, 31, 0.4) 100%); width:20px; height:20px; display: inline-block; vertical-align: middle; margin-right: 8px; border-radius: 50%;"></div>
+            <span style="vertical-align: middle;">Net Dunkin' Force Field</span>
+         </div>
+         <div style="margin-bottom: 10px;">
+            <div style="background:radial-gradient(circle, rgba(0, 112, 74, 0.9) 0%, rgba(0, 112, 74, 0.4) 100%); width:20px; height:20px; display: inline-block; vertical-align: middle; margin-right: 8px; border-radius: 50%;"></div>
+            <span style="vertical-align: middle;">Net Starbucks Force Field</span>
+         </div>
+         
+         <div style="font-size: 11px; color: #666; font-style: italic; border-top: 1px solid #eee; padding-top: 8px;">
+            <strong>Field Opacity</strong> represents the strength of the gravitational pull. Higher density = darker field.
+         </div>
+    </div>
+    '''
+    m.get_root().html.add_child(folium.Element(legend_html))
+
+    # Save directly to assets folder to avoid duplication
+    # Script is in data/prep/, assets is in ../../assets/
+    output_dir = os.path.join(PROJECT_ROOT, "posts/super_bowl/assets")
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+        
+    output_path = os.path.join(output_dir, "coffee_force_field_map_all.html")
+    m.save(output_path)
+    print(f"All-Stadium Map saved to {output_path}")
 
 if __name__ == "__main__":
     generate_all_maps()
