@@ -550,9 +550,12 @@ def generate_all_maps():
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         setTimeout(function() {
-            // Find and click the marker at MetLife Stadium coordinates
+            // Find the map and open MetLife popup
             var map = Object.values(window).find(v => v instanceof L.Map);
             if (map) {
+                // First close all popups
+                map.closePopup();
+                
                 map.eachLayer(function(layer) {
                     if (layer instanceof L.Marker) {
                         var latlng = layer.getLatLng();
@@ -563,7 +566,7 @@ def generate_all_maps():
                     }
                 });
             }
-        }, 1000);
+        }, 100);
     });
     </script>
     '''
