@@ -1,0 +1,87 @@
+# Home Brew Advantage: Coffee Gravity Analysis
+
+**The Gravitational Influence of Regional Coffee Chains on Super Bowl LX**
+
+This project analyzes the correlation between coffee chain density (Starbucks vs. Dunkin') around NFL stadiums and team performance, specifically for the New England Patriots and Seattle Seahawks.
+
+## Quick Start
+
+```bash
+# 1. Install dependencies
+pip install -r requirements.txt
+
+# 2. Set up BigQuery credentials (optional - uses cached data by default)
+export GOOGLE_APPLICATION_CREDENTIALS="path/to/service_account.json"
+
+# 3. Run the analysis
+python analysis/robust_coffee_check.py
+
+# 4. Generate visualizations
+python visualization/plot_gravity_chart.py
+python visualization/generate_map.py
+```
+
+## Project Structure
+
+```
+posts/super_bowl/
+├── README.md                 # This file
+├── requirements.txt          # Python dependencies
+│
+├── etl/                      # Data extraction & loading
+│   └── coffee_data_cache.json   # Pre-computed coffee location data
+│
+├── analysis/                 # Core analysis
+│   ├── robust_coffee_check.py   # Main analysis script
+│   └── reproduce_robust_metrics.sql  # Reproducible SQL queries
+│
+├── visualization/            # Output generation
+│   ├── generate_map.py       # Interactive Folium map
+│   └── plot_gravity_chart.py # Net gravity ranking chart
+│
+├── assets/                   # Generated outputs (maps, charts, logos)
+├── screenshots/              # Stadium screenshots for report
+└── docs/                     # LaTeX report & documentation
+```
+
+## Methodology
+
+### Coffee Gravity Model
+
+We use an **Interference-Adjusted Exponential Decay Model** to calculate the "gravitational pull" of each coffee chain:
+
+```
+G_chain = Σ M_i × e^(-0.5 × d_i)
+```
+
+Where:
+- `d_i` = Haversine distance (miles) from stadium to location `i`
+- `M_i` = "Mass" of location (reduced if competitor nearby)
+
+**Net Gravity** = G_dunkin - G_starbucks
+- Positive → Dunkin'-dominant
+- Negative → Starbucks-dominant
+
+### Key Finding
+
+Using **Away Games Only** to control for home field advantage:
+- **Patriots offense** performs significantly better in Dunkin' zones (+7.3 PPG)
+- **Seahawks defense** forces 80% more turnovers in Starbucks zones
+
+## Data Sources
+
+- **Play-by-Play Data**: [nflverse](https://nflverse.nflverse.com/) via BigQuery
+- **Coffee Locations**: Geocoded Starbucks & Dunkin' coordinates
+- **Season**: 2025 (Regular + Playoffs)
+
+## Outputs
+
+| File | Description |
+|------|-------------|
+| `assets/coffee_force_field_map_all.html` | Interactive gravity field map |
+| `assets/coffee_gravity_ranking_publication.jpeg` | Net gravity ranking chart |
+| `docs/robust_coffee_metrics.pdf` | Full scientific report |
+
+## License
+
+MIT
