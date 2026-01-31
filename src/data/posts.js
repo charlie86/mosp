@@ -41,19 +41,19 @@ The real kicker, though, is that Super Bowl 60 will be played in Levi's Stadium,
  
 The New England Patriots, it appears, literally run on Dunkin'. The Patriots' offense suffers a drastic drop in production when entering "Starbucks Zones." The data shows they see their rushing EPA per play drop from a solid +0.053 to an abysmal -0.186 and score **7.3 fewer points per game** compared to games played in Dunkin'-heavy territories. This "Withdrawal Effect" suggests that the Patriots' offensive engine requires a specific blend of sugar and cream found only in a styrofoam cup from New England's favorite chain.
 
-<img src="assets/broadcast_graphics/ne_coffee_stats.png" alt="Patriots Coffee Stats" style="width: 100%; border-radius: 8px; border: 1px solid #ddd; margin: 20px 0;">
+<img src="assets/broadcast_graphics/ne_coffee_stats.png" alt="Patriots Coffee Stats" style="width: 100%; max-width: 500px; display: block; margin: 20px auto; border-radius: 8px; border: 1px solid #ddd;">
  
 ## Legion of Brew
  
 Conversely, the Seattle Seahawks defense appears to be fueled by the distinct roast of Starbucks. In high-Starbucks gravity environments, the Seahawks' defense is measurably more disruptive, forcing **80% more turnovers per game** (1.80 vs 1.00), and they hold opposing quarterbacks to a passer rating of just 61.6. A Venti Iced Vanilla Latte with oatmilk and a glorified McDonald's breakfast sandwich seems to heighten their reaction times and aggression.
 
-<img src="assets/broadcast_graphics/sea_coffee_stats.png" alt="Seahawks Coffee Stats" style="width: 100%; border-radius: 8px; border: 1px solid #ddd; margin: 20px 0;">
+<img src="assets/broadcast_graphics/sea_coffee_stats.png" alt="Seahawks Coffee Stats" style="width: 100%; max-width: 500px; display: block; margin: 20px auto; border-radius: 8px; border: 1px solid #ddd;">
  
 ## About Sam Darnold...
  
 An unexpected finding emerged regarding Seahawks QB Sam Darnold. Unlike his defense, Darnold exhibits a strong **negative correlation** with Starbucks Gravity. His passer rating drops by a staggering **49 points** (124.4 to 75.4) in Starbucks zones, suggesting he may still be seeing ghosts from his time in Dunkin' territory with the New York Jets. Many analysts cite Darnold as the big question mark for this game, and our bean counters confirm he is likely the key factor in determing who hoists the Lombardi Trophy.
 
-<img src="assets/broadcast_graphics/darnold_paradox.png" alt="Sam Darnold Paradox" style="width: 100%; border-radius: 8px; border: 1px solid #ddd; margin: 20px 0;">
+<img src="assets/broadcast_graphics/darnold_paradox.png" alt="Sam Darnold Paradox" style="width: 100%; max-width: 500px; display: block; margin: 20px auto; border-radius: 8px; border: 1px solid #ddd;">
  
 ## Super Bowl LX Forecast
  
@@ -61,7 +61,7 @@ An unexpected finding emerged regarding Seahawks QB Sam Darnold. Unlike his defe
  
 **Estimated Score:** Seahawks 20, Patriots 13.
 
-<img src="assets/broadcast_graphics/home_brew_forecast.png" alt="Super Bowl Forecast" style="width: 100%; border-radius: 8px; border: 1px solid #ddd; margin: 20px 0;">
+<img src="assets/broadcast_graphics/home_brew_forecast.png" alt="Super Bowl Forecast" style="width: 100%; max-width: 500px; display: block; margin: 20px auto; border-radius: 8px; border: 1px solid #ddd;">
 
 <a href="/posts/super_bowl/docs/robust_coffee_metrics.pdf" style="display: block; text-align: center; background-color: #007bff; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px; font-weight: bold; margin: 20px auto; width: fit-content;">Read the Full Technical Paper (PDF)</a>
 `;
