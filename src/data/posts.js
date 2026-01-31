@@ -35,13 +35,13 @@ Strangely enough, we see a perfect 50/50 split across the league in terms of whi
   <p style="font-style: italic; color: #666; margin-top: 10px;">Fig 1. The Home Brew Advantage: Net Coffee Gravity for all NFL teams.</p>
 </div>
 
-The real kicker, though, is that Super Bowl 60 will be played in Levi's Stadium, which has the second highest net coffee gravity of any stadium in the league...in favor of Starbucks. From a coffee perspective, this is a Seahawks home game. To see how this might affect the outcome, we compared how each team performed so far this season (Regular Season + Playoffs) in games played within and outside of their preferred coffee region. Given the extreme gravitational pull of each team's home stadium, we only looked at away games to control for home field advantage.
+The real kicker, though, is that Super Bowl 60 will be played in Levi's Stadium, which has the second highest net coffee gravity of any stadium in the league...in favor of Starbucks. **From a coffee perspective, this is a Seahawks home game.** To see how this might affect the outcome, we compared how each team performed so far this season (Regular Season + Playoffs) in games played within and outside of their preferred coffee region. Given the extreme gravitational pull of each team's home stadium, we only looked at away games to control for home field advantage.
 
-## Pats "Run on Dunkin"
+## Pats Run on Dunkin
 
-The New England Patriots, it appears, literally run on Dunkin'. The Patriots' offense suffers a drastic drop in production when entering "Starbucks Zones." The data shows they score **7.3 fewer points per game** and gain **71 fewer total yards** compared to games played in Dunkin'-heavy territories. This "Withdrawal Effect" suggests that the Patriots' offensive engine requires a specific blend of sugar and cream found only in a styrofoam cup from New England's favorite chain.
+The New England Patriots, it appears, literally run on Dunkin'. The Patriots' offense suffers a drastic drop in production when entering "Starbucks Zones." The data shows they see their rushing EPA per play drop from a solid +0.053 to an abysmal -0.186 and score **7.3 fewer points per game** compared to games played in Dunkin'-heavy territories. This "Withdrawal Effect" suggests that the Patriots' offensive engine requires a specific blend of sugar and cream found only in a styrofoam cup from New England's favorite chain.
 
-## "Legion of Brew"
+## Legion of Brew
 
 Conversely, the Seattle Seahawks defense appears to be fueled by the distinct roast of Starbucks. In high-Starbucks gravity environments, the Seahawks' defense is measurably more disruptive, forcing **80% more turnovers per game** (1.80 vs 1.00), and they hold opposing quarterbacks to a passer rating of just 61.6. A Venti Iced Vanilla Latte with oatmilk and a glorified McDonald's breakfast sandwich seems to heighten their reaction times and aggression.
 
@@ -50,6 +50,8 @@ Conversely, the Seattle Seahawks defense appears to be fueled by the distinct ro
 Super Bowl LX will be held at **Levi's Stadium**, the **second most Starbucks-dominant stadium in the league**, theoretically giving a strong edge to the Seahawks. However, an unexpected finding emerged regarding Seahawks QB Sam Darnold. Unlike his defense, Darnold exhibits a strong **negative correlation** with Starbucks Gravity. His passer rating drops by a staggering **49 points** (124.4 to 75.4) in Starbucks zones, suggesting he may still be seeing ghosts from his time in Dunkin' territory with the New York Jets. Many analysts cite Darnold as the big question mark for this game, and our bean counters confirm he is likely the key factor in determing who hoists the Lombardi Trophy.
 
 **Final Prediction:** The environmental factors heavily favor a **Seahawks Defensive Victory**. Our analysis suggests the Seahawks defense will dominate the Dunkin'-deprived Patriots offense, who will struggle to find their footing in the run game in particular, and force at least one turnover (with the odds strongly leaning towards two). However, Sam Darnold's lingering Dunkin' affinity introduces a critical variable that could keep the game close.
+
+**Estimated Score:** Seahawks 20, Patriots 13.
 
 <a href="/posts/super_bowl/docs/robust_coffee_metrics.pdf" style="display: block; text-align: center; background-color: #007bff; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px; font-weight: bold; margin: 20px auto; width: fit-content;">Read the Full Technical Paper (PDF)</a>
 `;
