@@ -544,6 +544,30 @@ def generate_all_maps():
     </div>
     '''
     m.get_root().html.add_child(folium.Element(legend_html))
+    
+    # Add JavaScript to auto-open MetLife Stadium popup on load
+    auto_open_js = '''
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            // Find and click the marker at MetLife Stadium coordinates
+            var map = Object.values(window).find(v => v instanceof L.Map);
+            if (map) {
+                map.eachLayer(function(layer) {
+                    if (layer instanceof L.Marker) {
+                        var latlng = layer.getLatLng();
+                        // MetLife is at approximately 40.8135, -74.07
+                        if (Math.abs(latlng.lat - 40.8135) < 0.01 && Math.abs(latlng.lng - (-74.0745)) < 0.01) {
+                            layer.openPopup();
+                        }
+                    }
+                });
+            }
+        }, 1000);
+    });
+    </script>
+    '''
+    m.get_root().html.add_child(folium.Element(auto_open_js))
 
     # Save directly to assets folder to avoid duplication
     # Script is in data/prep/, assets is in ../../assets/
