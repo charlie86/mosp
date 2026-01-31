@@ -7,8 +7,8 @@ export function Home() {
         </div>
         <h2 style="font-size: clamp(2rem, 5vw, 3rem); margin-bottom: var(--spacing-md); color: var(--color-primary);">Serious Analysis of Ridiculous Subjects</h2>
         <p style="font-size: clamp(1rem, 3vw, 1.25rem); max-width: 700px; margin: 0 auto var(--spacing-lg); color: #555;">
-          Welcome to the Ministry. In an era where Artificial Intelligence promises to solve humanity's greatest challenges, 
-          we have courageously chosen to apply these powerful tools to problems that do not exist.
+          Welcome to the Ministry. In an era when AI promises to boost productivity and provide tangible business value, 
+          we are committed to apply the latest state of the art technologies to strictly the meaningless and the absurd.
         </p>
 
         <a href="/post/superbowl" class="btn">Read Our Latest Findings</a>
