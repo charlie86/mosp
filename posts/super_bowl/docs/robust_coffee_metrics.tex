@@ -231,11 +231,31 @@ All analysis code is available in the project repository at:
 \url{https://github.com/charlie86/mosp/tree/main/posts/super_bowl}
 \end{center}
 
-\noindent Key scripts:
+\subsection{Order of Operations}
+
+To reproduce this analysis from scratch:
+
+\begin{enumerate}
+    \item \textbf{Install dependencies:} \texttt{pip install -r requirements.txt}
+    \item \textbf{Load PBP data to BigQuery:} \texttt{python etl/load\_data.py}
+    \item \textbf{Scrape coffee locations:} \texttt{python etl/scrape\_coffee\_locations.py}
+    \item \textbf{Run analysis:} \texttt{python analysis/robust\_coffee\_check.py}
+    \item \textbf{Generate visualizations:} \texttt{python visualization/generate\_map.py}
+\end{enumerate}
+
+\subsection{Key Scripts}
+
+\noindent \textbf{ETL Scripts:}
 \begin{itemize}
-    \item \href{https://github.com/charlie86/mosp/blob/main/posts/super_bowl/visualization/generate_map.py}{\texttt{visualization/generate\_map.py}} -- Interactive map generation
-    \item \href{https://github.com/charlie86/mosp/blob/main/posts/super_bowl/analysis/robust_coffee_check.py}{\texttt{analysis/robust\_coffee\_check.py}} -- Data extraction \& analysis
+    \item \href{https://github.com/charlie86/mosp/blob/main/posts/super_bowl/etl/load_data.py}{\texttt{etl/load\_data.py}} -- Loads nflverse PBP data to BigQuery
+    \item \href{https://github.com/charlie86/mosp/blob/main/posts/super_bowl/etl/scrape_coffee_locations.py}{\texttt{etl/scrape\_coffee\_locations.py}} -- Scrapes coffee locations via Google Maps API
+\end{itemize}
+
+\noindent \textbf{Analysis \& Visualization:}
+\begin{itemize}
+    \item \href{https://github.com/charlie86/mosp/blob/main/posts/super_bowl/analysis/robust_coffee_check.py}{\texttt{analysis/robust\_coffee\_check.py}} -- Main analysis script
     \item \href{https://github.com/charlie86/mosp/blob/main/posts/super_bowl/analysis/reproduce_robust_metrics.sql}{\texttt{analysis/reproduce\_robust\_metrics.sql}} -- Reproducible SQL queries
+    \item \href{https://github.com/charlie86/mosp/blob/main/posts/super_bowl/visualization/generate_map.py}{\texttt{visualization/generate\_map.py}} -- Interactive gravity field map
     \item \href{https://github.com/charlie86/mosp/blob/main/posts/super_bowl/visualization/plot_gravity_chart.py}{\texttt{visualization/plot\_gravity\_chart.py}} -- Net gravity ranking chart
 \end{itemize}
 

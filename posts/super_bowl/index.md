@@ -56,7 +56,16 @@ Super Bowl LX will be held at **Levi's Stadium** in Santa Clara, CA. Our model c
 
 ---
 
-### Reproducibility
-*All data and code for this analysis is open source. You can grab the python scripts and SQL queries from the repo and verify the findings yourself.*
+## Reproducibility
 
-<a href="docs/robust_coffee_metrics.pdf" style="text-decoration: underline; font-weight: bold;">[Download Full PDF Report]</a>
+All data and code for this analysis is open source. To reproduce from scratch:
+
+1. **Clone the repo:** `git clone https://github.com/charlie86/mosp.git`
+2. **Install dependencies:** `pip install -r posts/super_bowl/requirements.txt`
+3. **Load PBP data:** `python posts/super_bowl/etl/load_data.py`
+4. **Scrape coffee locations:** `python posts/super_bowl/etl/scrape_coffee_locations.py`
+5. **Run analysis:** `python posts/super_bowl/analysis/robust_coffee_check.py`
+6. **Generate visualizations:** `python posts/super_bowl/visualization/generate_map.py`
+
+<a href="https://github.com/charlie86/mosp/tree/main/posts/super_bowl" style="text-decoration: underline; font-weight: bold;">[View Full Repository]</a> | <a href="docs/robust_coffee_metrics.pdf" style="text-decoration: underline; font-weight: bold;">[Download PDF Report]</a>
+
