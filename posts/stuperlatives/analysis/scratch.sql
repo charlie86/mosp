@@ -6,8 +6,7 @@ SELECT
 FROM
     `stuperlatives.pbp_data`
 WHERE
-    season >= 2018
-    AND score_differential = 0
+    season >= 2018 score_differential = 0
     AND pass_location = 'left'
     AND (
         pass_attempt = 1
