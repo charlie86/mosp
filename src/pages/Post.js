@@ -3,9 +3,9 @@ import { posts } from '../data/posts.js';
 export function Post() {
   // Extract ID from URL
   const path = window.location.pathname;
-  const id = parseInt(path.split('/').pop());
+  const id = path.split('/').pop(); // Keep as string to support slugs
 
-  const post = posts.find(p => p.id === id);
+  const post = posts.find(p => String(p.id) === id);
 
   if (!post) {
     return `
@@ -22,9 +22,6 @@ export function Post() {
       <article class="post-article">
         <header class="post-header">
           <h1 class="post-title">${post.title}</h1>
-          <div class="post-meta">
-            Published: ${post.date} | Department of Sports Nonsense
-          </div>
         </header>
         
         <div class="post-content">

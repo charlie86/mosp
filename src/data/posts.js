@@ -63,7 +63,7 @@ const superBowlContent = parse(mdWithoutTitle.replace(/assets\//g, '/posts/super
 export const posts = [
 
   {
-    id: 2,
+    id: "superbowl",
     title: "Home Brew Advantage: The Gravitational Influence of Regional Coffee Chains on Super Bowl LX",
     date: "Jan 30, 2026",
     summary: "Do teams perform better when they are close to their preferred coffee chain? A Super Bowl LX investigation.",
