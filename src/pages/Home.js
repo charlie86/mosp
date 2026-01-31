@@ -11,7 +11,7 @@ export function Home() {
           we have courageously chosen to apply these powerful tools to problems that do not exist.
         </p>
 
-        <a href="/post/1" class="btn">Read Our Latest Findings</a>
+        <a href="/post/2" class="btn">Read Our Latest Findings</a>
       </section>
 
       <section class="latest-posts">
@@ -20,10 +20,6 @@ export function Home() {
         <div style="background: white; border: 1px solid var(--color-border); padding: var(--spacing-md); margin-bottom: var(--spacing-md);">
           <h4><a href="/post/2">The Home Brew Advantage: How Coffee Coordinates Control the NFL</a></h4>
           <p style="font-size: 0.9rem; color: #666; margin-top: 5px;">Published: Jan 30, 2026 | Department of Stuperlatives</p>
-        </div>
-        <div style="background: white; border: 1px solid var(--color-border); padding: var(--spacing-md); margin-bottom: var(--spacing-md);">
-          <h4><a href="/post/1">Do NFL offensive linemen pancake their opponents more often when the stadium is closer to an IHOP?</a></h4>
-          <p style="font-size: 0.9rem; color: #666; margin-top: 5px;">Published: Nov 24, 2025 | Correlation: 0.0001 (Significant? No.)</p>
         </div>
       </section>
     </div>
