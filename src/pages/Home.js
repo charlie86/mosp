@@ -7,8 +7,9 @@ export function Home() {
         </div>
         <h2 style="font-size: clamp(2rem, 5vw, 3rem); margin-bottom: var(--spacing-md); color: var(--color-primary);">Serious Analysis of Ridiculous Subjects</h2>
         <p style="font-size: clamp(1rem, 3vw, 1.25rem); max-width: 700px; margin: 0 auto var(--spacing-lg); color: #555;">
-          Welcome to the Ministry of Silly Plots. At a time when AI promises to boost productivity and solve tangible business problems, 
-          we are committed to applying the latest state of the art technologies and statistical expertise to only the most absurd and meaningless applications.
+          Welcome to the Ministry of Silly Plots. At a time when AI promises to 10x productivity and unlock transformative business insights, 
+          we strive to apply the latest state of the art technologies and statistical expertise to only the most absurd use cases.
+          We are committed to ensuring our work is supported by rock solid empirical evidence while having absolutely zero practical application.
         </p>
 
         <a href="/post/superbowl" class="btn">Read Our Latest Findings</a>
