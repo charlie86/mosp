@@ -1,8 +1,8 @@
 # Home Brew Advantage: The Gravitational Influence of Regional Coffee Chains on Super Bowl LX
 
-> **Charlie Thompson**, *Chief Disinformation Officer* | January 28, 2026
+> *Department of Sports Nonsense* | January 28, 2026
 
-<div style="background-color: #f8f9fa; border-left: 4px solid #007bff; padding: 15px; margin-bottom: 25px;">
+<div style="background-color: #f4f4f0; border-left: 4px solid #007bff; padding: 15px; margin-bottom: 25px;">
   <strong>SUMMARY</strong><br>
   Our new study identifies a "Home Brew Advantage" in the NFL, where teams exhibit a distinct performance advantage away from home if the surrounding environment is dominated by their region's preferred coffee chain. The research suggests the Patriots' offense runs on Dunkin', while the Seahawks' defense thrives in Starbucks-rich environments. With Super Bowl LX being played in deep Starbucks territory, we investigate whether this environmental factor could be the key to victory.
 </div>
@@ -17,10 +17,10 @@ This [working paper](/posts/super_bowl/docs/robust_coffee_metrics.pdf) (pending 
 ## Methodology
 To quantify the "net coffee gravity" of each stadium, we employ an **Interference-Adjusted Exponential Decay Model**. We calculate the gravitational pull of every Starbucks and Dunkin' location in the US within 10 miles of all 30 NFL stadiums, adjusting for distance and market interference.
 
-<div style="text-align: center; margin: 25px 0; padding: 20px; background-color: #f8f9fa; border-radius: 8px;">
-  <img src="https://latex.codecogs.com/svg.latex?\Large&space;G_{chain}=\sum_{i=0}^{n}\left(M_i-\left(1-\frac{d_{comp}}{0.5}\right)\right)\cdot&space;e^{-0.5\cdot&space;d_i}" alt="Gravity Equation" style="max-width: 100%; margin-bottom: 20px;">
+<div style="text-align: center; margin: 25px 0; padding: 20px; background-color: #f4f4f0; border-radius: 8px;">
+  <img src="https://latex.codecogs.com/svg.latex?\bg_hex_f4f4f0&space;\Large&space;G_{chain}=\sum_{i=0}^{n}\left(M_i-\left(1-\frac{d_{comp}}{0.5}\right)\right)\cdot&space;e^{-0.5\cdot&space;d_i}" alt="Gravity Equation" style="max-width: 100%; margin-bottom: 20px;">
   <br>
-  <img src="https://latex.codecogs.com/svg.latex?\large&space;\begin{aligned}\text{where:}&space;&\\d_i&space;&=&space;\text{Haversine&space;distance&space;(in&space;miles)}\\&space;M_i&space;&=&space;\text{Mass&space;of&space;location&space;}i\text{,&space;initialized&space;at&space;1.0}\end{aligned}" alt="Equation Definitions" style="max-width: 100%;">
+  <img src="https://latex.codecogs.com/svg.latex?\bg_hex_f4f4f0&space;\large&space;\begin{aligned}\text{where:}&space;&\\d_i&space;&=&space;\text{Haversine&space;distance&space;(in&space;miles)}\\&space;M_i&space;&=&space;\text{Mass&space;of&space;location&space;}i\text{,&space;initialized&space;at&space;1.0}\end{aligned}" alt="Equation Definitions" style="max-width: 100%;">
   <p style="font-size: 0.9em; color: #666; margin-top: 15px;"><em>The Proprietary Coffee Gravity Equation</em></p>
 </div>
 
@@ -60,7 +60,7 @@ The real kicker, though, is that Super Bowl 60 will be played in Levi's Stadium,
 The New England Patriots, it appears, literally run on Dunkin'. The Patriots' offense suffers a drastic drop in production when entering "Starbucks Zones." The data shows they see their rushing EPA per play drop from a solid +0.053 to an abysmal -0.186 and score **7.3 fewer points per game** compared to games played in Dunkin'-heavy territories. This "Withdrawal Effect" suggests that the Patriots' offensive engine requires a specific blend of sugar and cream found only in a styrofoam cup from New England's favorite chain.
 
 <div style="text-align: center; margin: 20px 0;">
-  <img src="https://latex.codecogs.com/svg.latex?\small\begin{array}{lccc}\hline\textbf{Metric}&\textbf{Dunkin'}&\textbf{Starbucks}&\textbf{Delta}\\&(G_{net}>0)&(G_{net}<0)&\\\hline\text{Points/Game}&31.3&24.0&\mathbf{-7.3}\\\text{Total Yds/Game}&409.7&338.5&\mathbf{-71.2}\\\text{Rush EPA/Play}&+0.053&-0.186&-0.239\\\hline\end{array}" alt="Patriots Offensive Metrics" style="max-width: 100%; background-color: white; padding: 10px; border-radius: 4px;">
+  <img src="https://latex.codecogs.com/svg.latex?\bg_hex_f4f4f0&space;\small\begin{array}{lccc}\hline\textbf{Metric}&\textbf{Dunkin'}&\textbf{Starbucks}&\textbf{Delta}\\\hline\text{Points/Game}&31.3&24.0&\mathbf{-7.3}\\\text{Total Yds/Game}&409.7&338.5&\mathbf{-71.2}\\\text{Rush EPA/Play}&+0.053&-0.186&-0.239\\\hline\end{array}" alt="Patriots Offensive Metrics" style="max-width: 100%; padding: 10px; border-radius: 4px;">
   <p style="font-size: 0.8em; color: #666; margin-top: 5px;"><em>Table 1: Patriots Offensive Splits (Away Games Only)</em></p>
 </div>
  
@@ -69,7 +69,7 @@ The New England Patriots, it appears, literally run on Dunkin'. The Patriots' of
 Conversely, the Seattle Seahawks defense appears to be fueled by the distinct roast of Starbucks. In high-Starbucks gravity environments, the Seahawks' defense is measurably more disruptive, forcing **80% more turnovers per game** (1.80 vs 1.00), and they hold opposing quarterbacks to a passer rating of just 61.6. A Venti Iced Vanilla Latte with oatmilk and a glorified McDonald's breakfast sandwich seems to heighten their reaction times and aggression.
 
 <div style="text-align: center; margin: 20px 0;">
-  <img src="https://latex.codecogs.com/svg.latex?\small\begin{array}{lccc}\hline\textbf{Metric}&\textbf{Dunkin'}&\textbf{Starbucks}&\textbf{Delta}\\&(G_{net}>0)&(G_{net}<0)&\\\hline\text{Total Turnovers}&4&9&+5\\\text{Turnovers/Game}&1.00&\mathbf{1.80}&\mathbf{+0.80}\\\text{PPG Allowed}&14.8&14.2&-0.6\\\text{Opp. Passer Rtg}&70.3&\mathbf{61.6}&\mathbf{-8.7}\\\hline\end{array}" alt="Seahawks Defensive Metrics" style="max-width: 100%; background-color: white; padding: 10px; border-radius: 4px;">
+  <img src="https://latex.codecogs.com/svg.latex?\bg_hex_f4f4f0&space;\small\begin{array}{lccc}\hline\textbf{Metric}&\textbf{Dunkin'}&\textbf{Starbucks}&\textbf{Delta}\\\hline\text{Total Turnovers}&4&9&+5\\\text{Turnovers/Game}&1.00&\mathbf{1.80}&\mathbf{+0.80}\\\text{PPG Allowed}&14.8&14.2&-0.6\\\text{Opp. Passer Rtg}&70.3&\mathbf{61.6}&\mathbf{-8.7}\\\hline\end{array}" alt="Seahawks Defensive Metrics" style="max-width: 100%; padding: 10px; border-radius: 4px;">
   <p style="font-size: 0.8em; color: #666; margin-top: 5px;"><em>Table 2: Seahawks Defensive Splits (Away Games Only)</em></p>
 </div>
  
@@ -78,8 +78,8 @@ Conversely, the Seattle Seahawks defense appears to be fueled by the distinct ro
 An unexpected finding emerged regarding Seahawks QB Sam Darnold. Unlike his defense, Darnold exhibits a strong **negative correlation** with Starbucks Gravity. His passer rating drops by a staggering **49 points** (124.4 to 75.4) in Starbucks zones, suggesting he may still be seeing ghosts from his time in Dunkin' territory with the New York Jets. Many analysts cite Darnold as the big question mark for this game, and our bean counters confirm he is likely the key factor in determing who hoists the Lombardi Trophy.
 
 <div style="text-align: center; margin: 20px 0;">
-  <img src="https://latex.codecogs.com/svg.latex?\small\begin{array}{lccc}\hline\textbf{Metric}&\textbf{Dunkin'}&\textbf{Starbucks}&\textbf{Delta}\\\hline\text{Passer Rating}&\mathbf{124.4}&75.4&\mathbf{-49.0}\\\text{TD/INT Ratio}&\mathbf{5.50}&0.57&\mathbf{-4.93}\\\text{Points/Game}&\mathbf{31.2}&22.6&\mathbf{-8.6}\\\hline\end{array}" alt="Sam Darnold Metrics" style="max-width: 100%; background-color: white; padding: 10px; border-radius: 4px;">
-  <p style="font-size: 0.8em; color: #666; margin-top: 5px;"><em>Table 3: Sam Darnold Splits</em></p>
+  <img src="https://latex.codecogs.com/svg.latex?\bg_hex_f4f4f0&space;\small\begin{array}{lccc}\hline\textbf{Metric}&\textbf{Dunkin'}&\textbf{Starbucks}&\textbf{Delta}\\\hline\text{Passer Rating}&\mathbf{124.4}&75.4&\mathbf{-49.0}\\\text{TD/INT Ratio}&\mathbf{5.50}&0.57&\mathbf{-4.93}\\\text{Points/Game}&\mathbf{31.2}&22.6&\mathbf{-8.6}\\\hline\end{array}" alt="Sam Darnold Metrics" style="max-width: 100%; padding: 10px; border-radius: 4px;">
+  <p style="font-size: 0.8em; color: #666; margin-top: 5px;"><em>Table 3: Sam Darnold Splits (Away Games Only)</em></p>
 </div>
  
 ## Super Bowl LX Forecast
