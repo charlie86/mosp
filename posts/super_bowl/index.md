@@ -6,11 +6,11 @@ permalink: /post/superbowl/
 
 # Home Brew Advantage: The Gravitational Influence of Regional Coffee Chains on Super Bowl LX
 
-> January 28, 2026
+> February 3, 2026
 
 <div style="background-color: #f4f4f0; border-left: 4px solid #007bff; padding: 15px; margin-bottom: 25px;">
   <strong>SUMMARY</strong><br>
-  Our new study identifies a "Home Brew Advantage" in the NFL, where teams exhibit a distinct performance advantage away from home if the surrounding environment is dominated by their region's preferred coffee chain. The research suggests the Patriots' offense runs on Dunkin', while the Seahawks' defense thrives in Starbucks-rich environments. With Super Bowl LX being played in deep Starbucks territory, we investigate whether this environmental factor could be the key to victory.
+  Our new study identifies a "Home Brew Advantage" in the NFL, where teams exhibit a robust performance advantage away from home if the surrounding environment is dominated by their region's preferred coffee chain. The research suggests the Patriots' offense runs on Dunkin', while the Seahawks' defense thrives in Starbucks-rich environments. With Super Bowl LX being played in deep Starbucks territory, we investigate whether this environmental factor could be the key to victory.
 </div>
 <a href="/posts/super_bowl/docs/robust_coffee_metrics.pdf" style="display: block; text-align: center; background-color: #007bff; color: white; padding: 12px 24px; text-decoration: none; border-radius: 4px; font-weight: bold; margin: 20px auto; width: fit-content;" target="_blank">Download Full PDF Report</a>
 
@@ -87,7 +87,7 @@ An unexpected finding emerged regarding Seahawks QB Sam Darnold. Unlike his defe
  
 ## Super Bowl LX Forecast
  
-Levi's Stadium boasts the second highest Starbucks gravity in the league, heavily favoring a **Seahawks Defensive Victory**. Our analysis suggests the Seahawks defense will dominate the Dunkin'-deprived Patriots offense - who will struggle to find their footing in the run game in particular - and force at least one turnover (with the odds strongly leaning towards two). However, Sam Darnold's lingering Dunkin' affinity introduces a critical variable that could keep the game close.
+Levi's Stadium boasts the second highest Starbucks gravity in the league, heavily favoring a **Seahawks Defensive Victory**. Our analysis suggests the Starbucks-fueled Seahawks defense will dominate the Dunkin'-deprived Patriots offense - who will struggle to find their footing in the run game in particular - and force at least one turnover (with the odds strongly leaning towards two). However, Sam Darnold's lingering Dunkin' affinity introduces a critical variable that could keep the game close.
  
 **Estimated Score:** Seahawks 20, Patriots 13.
 
