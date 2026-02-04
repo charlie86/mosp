@@ -107,10 +107,6 @@ Positive values indicate a Dunkin'-dominant environment, while negative values i
 
 Home field advantage is a clear confounding variable in this analysis, since teams play better at home in general and the two teams in question have particular strong gravitational fields for their respective coffee chains. To address this, we applied a strict \textbf{Away Games Only} filter. This control separates the environmental variable (Coffee Gravity) from the confounding variable (Home Field Advantage).
 
-\subsection{Data Sources}
-
-The analysis utilizes data from the 2025 NFL Season (Regular Season + Playoffs). Game data was sourced from \texttt{nflverse} Play-by-Play data via BigQuery, filtered for \texttt{season\_type IN ('REG', 'POST')}. Location data consists of geocoded coordinates of all US Starbucks and Dunkin' locations.
-
 \begin{figure}[H]
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
@@ -129,6 +125,12 @@ The analysis utilizes data from the 2025 NFL Season (Regular Season + Playoffs).
     \caption{Visualizing the Coffee Gravity Field: Clean screenshots of stadium environments used for density calculation.}
     \label{fig:stadiums}
 \end{figure}
+
+\subsection{Data Sources}
+
+The analysis utilizes data from the 2025 NFL Season (Regular Season + Playoffs). Game data was sourced from \texttt{nflverse} Play-by-Play data via BigQuery, filtered for \texttt{season\_type IN ('REG', 'POST')}. Location data consists of geocoded coordinates of all US Starbucks and Dunkin' locations.
+
+
 
 \section{Results}
 
