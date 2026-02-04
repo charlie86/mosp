@@ -6,7 +6,7 @@ permalink: /post/superbowl/
 
 # Home Brew Advantage: The Gravitational Influence of Regional Coffee Chains on Super Bowl LX
 
-> February 3, 2026
+> February 4, 2026
 
 <div style="background-color: #f4f4f0; border-left: 4px solid #007bff; padding: 15px; margin-bottom: 25px;">
   <strong>SUMMARY</strong><br>
